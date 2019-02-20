@@ -1,6 +1,9 @@
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -9,11 +12,19 @@ import javax.persistence.Table;
 public class Livre {
 		@Id
 		private Integer Id;
+		
 		@Column(name = "TITRE", length = 255, nullable = false, unique = true )
 		private String titre;
+		
 		@Column(name = "AUTEUR", length = 50, nullable = false, unique = true )
 		private String auteur;
 		
+		@ManyToMany(mappedBy="livres")
+		private Set<Emprunt> emprunts;
+	
+	
+		
+		//getter et setter pour livre
 		public Integer getId() {
 			return Id;
 		}
